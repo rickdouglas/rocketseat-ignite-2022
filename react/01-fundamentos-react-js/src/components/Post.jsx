@@ -1,5 +1,6 @@
 import styles from '../styles/Post.module.css'
 import profileImg from '../assets/profile.png'
+import { Comment } from './Comment'
 
 export function Post () {
     return (
@@ -37,6 +38,11 @@ export function Post () {
                 </footer>
                 
             </form>
+
+            <div className={styles.commentList}>
+                <Comment />
+                <Comment />
+            </div>
         </article>
     )
 } 
