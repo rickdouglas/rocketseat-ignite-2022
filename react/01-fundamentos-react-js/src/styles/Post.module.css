@@ -4,7 +4,7 @@
     padding: 2.5rem;
     
 }
-.post + .post {
+.post + .post { /** separa um post do outro quando houver mais de 1 */
     margin-top: 2rem;
 }
 .post > header {
