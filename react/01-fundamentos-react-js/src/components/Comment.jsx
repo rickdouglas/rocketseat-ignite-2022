@@ -15,15 +15,17 @@ export function Comment() {
                             <time title='11 de outubro as 12:30' dateTime='2022-10-12 18:42:30'>Publicado ha 1h</time>
                         </div>
                         <button title='Deletar comentario'>
-                            <Trash size={20}/>
+                            <Trash size={24}/>
                         </button>
                     </header>
                     <p>Muito bom Devon, parabéns!! 👏👏</p>
                 </div>
 
                 <footer>
-                    <ThumbsUp />
-                    Aplaudir <span>20</span>  
+                    <button>
+                        <ThumbsUp />
+                        Aplaudir <span>20</span>  
+                    </button>
                 </footer>
             </div>
         </div>
