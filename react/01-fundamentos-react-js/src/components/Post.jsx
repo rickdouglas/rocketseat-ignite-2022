@@ -3,9 +3,12 @@ import profileImg from '../assets/profile.png'
 import { format, formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/esm/locale/pt-BR/index.js'
 import { Avatar } from './Avatar'
+import { useState } from 'react'
 
 export function Post({author, publishedAt, content}) {
-    console.log(content)
+
+    const [comments, setComments] = useState([]);
+    
     const publishedDateFormat = format(publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
         locale: ptBR
     })
@@ -13,6 +16,12 @@ export function Post({author, publishedAt, content}) {
         locale: ptBR,
         addSuffix: true
     })
+    
+    function handleCreateComment(event) {
+        event.preventDefault()
+        setComments([1,2,3]);
+    }
+    
     return (
         <article className={styles.post}>
             <header>
@@ -37,7 +46,7 @@ export function Post({author, publishedAt, content}) {
                 })}
             </div>
 
-            <form className={styles.comentForm}>
+            <form onSubmit={handleCreateComment} className={styles.comentForm}>
                 <strong>Deixe seu feedback</strong>
 
                 <textarea placeholder='Deixe seu comentário'/>
@@ -48,11 +57,11 @@ export function Post({author, publishedAt, content}) {
                 
             </form>
 
-            {/* <div className={styles.commentList}>
-                <Comment />
-                <Comment />
-                <Comment />
-            </div> */}
+            <div className={styles.commentList}>
+                {comments.map(comment => {
+                    return <Comment />
+                })}
+            </div> 
         </article>
     )
 } 
