@@ -12,7 +12,7 @@ export function Post({author, publishedAt, content}) {
         'Post muito loko !!!'
     ]);
 
-    const [newComment, setNetComment] = useState('')
+    const [newComment, setNewComment] = useState('')
 
     const publishedDateFormat = format(publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
         locale: ptBR
@@ -21,15 +21,20 @@ export function Post({author, publishedAt, content}) {
         locale: ptBR,
         addSuffix: true
     })
+    
+    function handleNewCommentInvalid() {
+        event.target.setCustomValidity('Esse campo é obrigatorio')
+    }
 
     function handleNewCommentChange() {
-        setNetComment(event.target.value)
+        event.target.setCustomValidity('')
+        setNewComment(event.target.value)
     }
     
     function handleCreateComment(event) {
         event.preventDefault();
         setComments([...comments, newComment]);
-        setNetComment('');
+        setNewComment('');
     }
 
     function deleteComment(commentToDelete) {
@@ -38,6 +43,7 @@ export function Post({author, publishedAt, content}) {
         })
         setComments(commentListWithoutDeletedOne)
     }
+    const isNewCommentEmpty = newComment.length === 0;
     
     return (
         <article className={styles.post}>
@@ -66,13 +72,17 @@ export function Post({author, publishedAt, content}) {
             <form onSubmit={handleCreateComment} className={styles.comentForm}>
                 <strong>Deixe seu feedback</strong>
 
-                <textarea placeholder='Deixe seu comentário'
-                        onChange={handleNewCommentChange}
-                        value={newComment}
-                        />
+                <textarea 
+                    name='comment'
+                    placeholder='Deixe seu comentário'
+                    onChange={handleNewCommentChange}
+                    value={newComment}
+                    onInvalid={handleNewCommentInvalid}
+                    required
+                />
                 
                 <footer>
-                    <button type='submit'>Publicar</button>
+                    <button type='submit'disabled={isNewCommentEmpty}>Publicar</button>
                 </footer>
                 
             </form>

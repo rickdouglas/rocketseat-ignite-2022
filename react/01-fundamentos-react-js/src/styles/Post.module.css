@@ -95,6 +95,10 @@
 .comentForm button:hover {
     background: var(--green-300);
 }
+.comentForm button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
 .commentList {
     margin-top: 2rem;
 }
