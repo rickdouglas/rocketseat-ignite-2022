@@ -20,7 +20,7 @@ interface Content{
 interface PostProps {
     author: Author,
     publishedAt: Date,
-    content: Content[]
+    content: Content[],
 }
 
 export function Post({author, publishedAt, content}: PostProps) {
